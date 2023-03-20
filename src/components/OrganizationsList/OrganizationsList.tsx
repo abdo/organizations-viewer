@@ -1,3 +1,4 @@
+import Box from '@/src/common/components/basic/Box';
 import { Text, textTypes } from '@/src/common/components/basic/Text';
 import OrganizationType from '@/src/types/organization';
 import getOrganizations from '@/src/utils/requests/getOrganizations';
@@ -17,10 +18,17 @@ const OrganizationsList = () => {
 
   return (
     <OrganizationListStyled>
-      <Text type={textTypes.big}>GitHub organizations and their members</Text>
-      {data.map((organization: OrganizationType) => (
-        <SingleOrganization key={organization.id} organization={organization} />
-      ))}
+      <Box m='0 0 1.6rem'>
+        <Text type={textTypes.big}>GitHub organizations and their members</Text>
+      </Box>
+      <Box display='flex' flexWrap='wrap'>
+        {data.map((organization: OrganizationType) => (
+          <SingleOrganization
+            key={organization.id}
+            organization={organization}
+          />
+        ))}
+      </Box>
     </OrganizationListStyled>
   );
 };
