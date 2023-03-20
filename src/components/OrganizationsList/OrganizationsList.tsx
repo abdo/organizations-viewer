@@ -1,5 +1,9 @@
 import Box from '@/src/common/components/basic/Box';
 import { Text, textTypes } from '@/src/common/components/basic/Text';
+import {
+  organizationsShownPerPage,
+  organizationsShownSince,
+} from '@/src/constants';
 import OrganizationType from '@/src/types/organization';
 import getOrganizations from '@/src/utils/requests/getOrganizations';
 import { useQuery } from 'react-query';
@@ -7,9 +11,11 @@ import SingleOrganization from './components/SingleOrganization/SingleOrganizati
 import { OrganizationListStyled } from './OrganizationsListStyle';
 
 const OrganizationsList = () => {
-  const { isLoading, error, data } = useQuery(
-    'organizations',
-    getOrganizations,
+  const { isLoading, error, data } = useQuery('organizations', () =>
+    getOrganizations({
+      perPage: organizationsShownPerPage,
+      since: organizationsShownSince,
+    }),
   );
 
   if (isLoading) {

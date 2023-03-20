@@ -42,7 +42,6 @@ type props = {
   left?: string;
   right?: string;
   opacity?: string;
-
   clipPath?: string;
   boxShadow?: string;
   naturalShadow?: boolean;
@@ -50,7 +49,6 @@ type props = {
   ls?: string;
   fontFamily?: string;
   fz?: string;
-
   fw?: string;
   noSelect?: boolean;
   initialAnimation?: boolean;
