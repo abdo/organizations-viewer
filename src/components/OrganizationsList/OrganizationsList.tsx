@@ -19,7 +19,11 @@ const OrganizationsList = () => {
   );
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Box m='2rem' display='flex' justifyContent='center'>
+        <Text type={textTypes.medium}>Loading...</Text>
+      </Box>
+    );
   }
 
   if (data.message) {
