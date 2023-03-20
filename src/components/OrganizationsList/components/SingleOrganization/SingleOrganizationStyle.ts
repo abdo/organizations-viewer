@@ -1,5 +1,26 @@
+import Box from '@/src/common/components/basic/Box';
 import theme from '@/src/style/theme';
 import styled from 'styled-components';
+
+type props = {
+  open: boolean;
+  numberOfMembers: number;
+};
+
+export const SingleOrganizationCard = styled(Box)<props>`
+  max-height: ${(props) =>
+    props.open
+      ? `${
+          13 + (props.numberOfMembers ? props.numberOfMembers * 9.5 + 4 : 7)
+        }rem`
+      : '13rem'};
+  overflow: hidden;
+  transition: all 0.5s ease;
+
+  &:hover {
+    box-shadow: 2px 4px 16px rgba(196, 196, 196, 0.3);
+  }
+`;
 
 export const SingleOrganizationWrapper = styled.div`
   width: 50%;
@@ -9,8 +30,10 @@ export const SingleOrganizationWrapper = styled.div`
   }
 `;
 
-export const OrganizationImage = styled.img`
-  width: 7.2rem;
-  height: 7.2rem;
+export const EntityImage = styled.img<{
+  size?: string;
+}>`
+  width: ${(props) => (props.size ? props.size : '7.2rem')};
+  height: ${(props) => (props.size ? props.size : '7.2rem')};
   border-radius: 50%;
 `;

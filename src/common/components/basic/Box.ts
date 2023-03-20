@@ -41,7 +41,7 @@ type props = {
   bottom?: string;
   left?: string;
   right?: string;
-  opacity?: string;
+  opacity?: string | number;
   clipPath?: string;
   boxShadow?: string;
   naturalShadow?: boolean;
