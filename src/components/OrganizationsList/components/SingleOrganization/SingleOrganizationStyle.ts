@@ -11,7 +11,7 @@ export const SingleOrganizationCard = styled(Box)<props>`
   max-height: ${(props) =>
     props.open
       ? `${
-          13 + (props.numberOfMembers ? props.numberOfMembers * 9.5 + 4 : 7)
+          13 + (props.numberOfMembers ? props.numberOfMembers * 10.5 + 4 : 9)
         }rem`
       : '13rem'};
   overflow: hidden;

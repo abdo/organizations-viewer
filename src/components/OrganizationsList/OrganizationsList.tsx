@@ -11,7 +11,7 @@ import SingleOrganization from './components/SingleOrganization/SingleOrganizati
 import { OrganizationListStyled } from './OrganizationsListStyle';
 
 const OrganizationsList = () => {
-  const { isLoading, error, data } = useQuery('organizations', () =>
+  const { isLoading, data } = useQuery('organizations', () =>
     getOrganizations({
       perPage: organizationsShownPerPage,
       since: organizationsShownSince,
@@ -20,6 +20,10 @@ const OrganizationsList = () => {
 
   if (isLoading) {
     return <div>Loading...</div>;
+  }
+
+  if (data.message) {
+    return <div>Error: {data.message}</div>;
   }
 
   return (

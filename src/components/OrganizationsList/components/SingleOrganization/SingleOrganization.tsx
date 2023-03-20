@@ -22,11 +22,7 @@ const SingleOrganization = ({
 }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const {
-    isLoading: isLoadingMembers,
-    error,
-    data,
-  } = useQuery(
+  const { isLoading: isLoadingMembers, data } = useQuery(
     `${login}public members`,
     () =>
       getPublicMembers({
@@ -44,6 +40,14 @@ const SingleOrganization = ({
 
   const nodeIdShortened =
     nodeId.length > 20 ? nodeId.substring(0, 20).concat('...') : nodeId;
+
+  if (isLoadingMembers) {
+    return <div>Loading...</div>;
+  }
+
+  if (data.message) {
+    return <div>Error: {data.message}</div>;
+  }
 
   return (
     <SingleOrganizationWrapper>
@@ -91,14 +95,21 @@ const SingleOrganization = ({
             <Text fw='400'>No members for this organization.</Text>
           ) : (
             <Box>
-              <Box display='flex' flexDirection='column'>
+              <Box display='flex' flexDirection='column' m='0 0 0 1rem'>
                 {data?.map((member: any) => (
                   <MemberPreview key={member.id} member={member} />
                 ))}
               </Box>
             </Box>
           )}
-          <Box display='flex' alignItems='center' justifyContent='center'>
+
+          {/* Arrow */}
+          <Box
+            display='flex'
+            alignItems='center'
+            justifyContent='center'
+            m='1rem 0 0'
+          >
             <Box fz='45px' fw='light' color={theme.colors.gray5}>
               &#8963;
             </Box>
@@ -116,7 +127,7 @@ const SingleOrganization = ({
                   h='7rem'
                   w='1px'
                   bgc={theme.colors.gray3}
-                  m='0 0 0 2px'
+                  m='0 0 0 3px'
                   hidden={i === data.length - 1}
                 ></Box>
               </>
